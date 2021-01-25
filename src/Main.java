@@ -1,34 +1,26 @@
-import java.util.Locale;
-import java.util.Scanner;
+
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        sc.useLocale(Locale.US);
-        int a = sc.nextInt();
-        int max = 0;
-        double[] b = new double[a];
-        double[] f = new double[a];
-        for (int i = 0; i < a; i++) {
-            b[i] = sc.nextDouble();
-        }
-        for (int i = 0; i < a; i++) {
-            for ( int j = 0; j < a; j++){
-                if (b[i] == b[j]){
-                    f[i] = f[i] + 1;
-                }
+    public static void main(String[] args) throws IOException {
+        File file = new File("temp.txt");
+        file.createNewFile();
+        File file2 = new File("temp2.txt");
+        file2.createNewFile();
 
+        FileReader filereader = new FileReader(file);
+        char[] strings = new char[1000];
+        filereader.read(strings);
+
+        FileReader filereader2 = new FileReader(file2);
+        char[] strings2 = new char[1000];
+        filereader2.read(strings2);
+        int i;
+        for(i = 0; i < strings.length; ++i){
+            if (strings[i] != strings2[i]){
+                System.out.print(strings[i]);
             }
         }
-        for (int i = 0; i < a - 1 ; i++) {
-            if (f[i + 1] > f[i]) {
-                max = i;
-                }
-
-        }
-        if (max == 0){
-            System.out.print(((int)b[0]));}
-        else{
-            System.out.print(((int)b[max + 1]));}
-        }
     }
+}
+
